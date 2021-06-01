@@ -1,9 +1,8 @@
-const { Body } = require("node-fetch");
 const Sequelize = require("sequelize")
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'database/bancoDeCadastro.sqlite'
+    storage: 'database/bancoteste.sqlite'
 });
 
 const openConnection = async () => {
@@ -16,7 +15,11 @@ const openConnection = async () => {
 }
 
 
-const db = {}
+const db = {} //objeto genérico
+
 db.conexao = openConnection()
-db.demanda = require("../models/cadastroDemanda")(sequelize, Sequelize)
+db.pessoa = require("../models/pessoaModel")(sequelize, Sequelize)
+db.endereco = require("../models/enderecoModel")(sequelize, Sequelize)
+
 module.exports = db
+
